@@ -1,0 +1,110 @@
+Home.css
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+  font-family: 'Roboto', sans-serif; /* Changed font to Roboto */
+  background-color: #f6f7f9;
+  color: #333;
+}
+
+/* Header styles */
+.header {
+  background-color: #000;
+  color: #fff;
+  padding: 35px;
+}
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #000;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+}
+
+.navbar-logo {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+}
+
+.navbar-menu {
+  display: flex;
+  gap: 130px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  
+}
+
+.navbar-menu li a {
+  text-decoration: none;
+  color: #130101;
+  padding: 10px 20px;
+}
+
+.join-button {
+  background-color: #3d5f8b;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+/* Background styles */
+.home-background {
+  background-image: url('https://images.ctfassets.net/drib7o8rcbyf/2VmvG7kxNh2rPT8zfVVJjo/e4eafc592ef26e575bac875cfe9f86ef/Hero_desktop.jpeg?fit=fill&fm=webp&h=470&q=85&w=900');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+/* Home content styles */
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centered horizontally */
+  justify-content: center;
+  height: 70%;
+  color: #fff;
+  font-size: 24px; /* Adjusted font size */
+  text-align: center; /* Centered text */
+}
+
+/* Button styles */
+.hero-button {
+  background-color: #3d5f8b;
+  color: #fff;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 30px;
+  text-decoration: none;
+}
+
+.info-section {
+  display: flex;
+  gap: 0px;
+  padding-right: 1000px;
+  align-items: center;
+}
+
+.hero-section {
+  display: flex;
+  gap: 0px;
+  padding-right: 1000px;
+  align-items: center;
+}

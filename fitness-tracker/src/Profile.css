@@ -1,0 +1,150 @@
+/* Profile.css */
+
+/* Background gradient */
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(to bottom, #000, #0360cbdc); /* Gradient from black to blue */
+    color: #fff; /* Text color */
+  }
+  
+  /* Profile info */
+  .profile-info {
+    margin-bottom: 20px;
+  }
+  
+  .profile-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .profile-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .detail {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .label {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+  
+  .value {
+    color: #fff; /* Text color */
+  }
+  
+  .weight-input {
+    margin-bottom: 20px;
+  }
+  
+  .input-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .weight-field {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .submit-button {
+    background-color: #4caf50; /* Green color for button */
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049; /* Darker green color on hover */
+  }
+  
+  .weight-chart {
+    width: 100%;
+  }
+  
+  .chart-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  /* Styling for lines on the chart */
+  .ct-series-a .ct-line {
+    stroke: #4caf50; /* Green color for the line */
+    stroke-width: 2px; /* Adjust line thickness */
+  }
+  
+  .ct-grid {
+    stroke: #fff; /* White color for grid lines */
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    width: 100%; /* Ensures the navbar stretches across the entire width */
+    box-sizing: border-box; /* Ensures padding and border are included in the width */
+  }
+  
+  .navbar-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-menu li {
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  .navbar-menu li:last-child {
+    margin-right: 0; /* Remove margin from the last item to prevent extra space */
+  }
+  
+  .navbar-menu li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .navbar-logo {
+    color: #fff;
+    font-size: 1.5rem;
+    text-decoration: none;
+  }
+  
+  .join-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .join-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .canvas-container canvas {
+    width: 100%;
+    height: auto;
+}
+
+/* Additional visibility checks to ensure elements are properly layered and visible */
+.detail, .profile-info, .weight-chart {
+    z-index: 1; /* Ensures these elements do not get hidden behind others */
+    position: relative;
+}
