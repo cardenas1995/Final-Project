@@ -1,66 +1,72 @@
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import relationship
-from sqlalchemy import ForeignKey
-from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from flask_sqlalchemy import SQLAlchemy
 
-
-from sqlalchemy.orm import validates
-from sqlalchemy import MetaData
-from flask_bcrypt import Bcrypt
-from sqlalchemy.ext.hybrid import hybrid_property
-
-convention = {
-    "ix": "ix_%(column_0_label)s",
-    "uq": "uq_%(table_name)s_%(column_0_name)s",
-    "ck": "ck_%(table_name)s_%(constraint_name)s",
-    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
-    "pk": "pk_%(table_name)s"
-}
-
-db = SQLAlchemy(metadata=MetaData(naming_convention=convention))
-bcrypt = Bcrypt()
+db = SQLAlchemy()
 
 class User(db.Model):
-    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(100), nullable=False)
-    email = db.Column(db.String(100), unique=True, nullable=False)
-    password_hash = db.Column(db.String(128))
+    name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    password = db.Column(db.String(128), nullable=False)
     height = db.Column(db.Float, nullable=False)
-    current_weight = db.Column(db.Float, nullable=False)
+    weight = db.Column(db.Float, nullable=False)
     goal_weight = db.Column(db.Float, nullable=False)
-    weights = relationship('WeightLog', backref='user', lazy='dynamic')
-    exercises = relationship('UserExerciseLog', backref='user', lazy='dynamic')
+    weight_logs = db.relationship('WeightLog', backref='user', lazy=True)
+    exercise_logs = db.relationship('ExerciseLog', backref='user', lazy=True)
 
-    @property
-    def password(self):
-        raise AttributeError('password is not a readable attribute')
-
-    @password.setter
-    def password(self, password):
-        self.password_hash = generate_password_hash(password)
-
-    def verify_password(self, password):
-        return check_password_hash(self.password_hash, password)
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'email': self.email,
+            'height': self.height,
+            'weight': self.weight,
+            'goal_weight': self.goal_weight
+        }
 
 class WeightLog(db.Model):
-    __tablename__ = 'weight_logs'
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Date, default=datetime.utcnow)
     weight = db.Column(db.Float, nullable=False)
-    user_id = db.Column(db.Integer, ForeignKey('users.id'))
+    date = db.Column(db.Date, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'weight': self.weight,
+            'date': self.date.isoformat(),
+            'user_id': self.user_id
+        }
+
+class ExerciseLog(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    exercise_name = db.Column(db.String(50), nullable=False)
+    muscle_group = db.Column(db.String(50), nullable=False)
+    date = db.Column(db.Date, default=datetime.utcnow)
+    image_url = db.Column(db.String(255), nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'exercise_name': self.exercise_name,
+            'muscle_group': self.muscle_group,
+            'date': self.date.isoformat(),
+            'image_url': self.image_url,
+            'user_id': self.user_id
+        }
 
 class Exercise(db.Model):
-    __tablename__ = 'exercises'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    muscle_group = db.Column(db.String(100))
-    description = db.Column(db.String(255))
+    name = db.Column(db.String(50), nullable=False)
+    muscle_group = db.Column(db.String(50), nullable=False)
+    push_pull = db.Column(db.String)
+    difficulty = db.Column(db.String)
+    img = db.Column(db.String)
 
-class UserExerciseLog(db.Model):
-    __tablename__ = 'user_exercise_logs'
-    id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Date, default=datetime.utcnow)
-    exercise_id = db.Column(db.Integer, ForeignKey('exercises.id'))
-    user_id = db.Column(db.Integer, ForeignKey('users.id'))
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'muscle_group': self.muscle_group
+        }

@@ -1,0 +1,206 @@
+/* .activity {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: linear-gradient(to bottom, #000, #284463);
+    color: #fff;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  .month-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .weekdays {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .weekday {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+  }
+  
+  .calendar-date {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .calendar-date:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .selected {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+  }
+  
+  .highlighted {
+    border: 2px solid #ffcc00;
+  }
+  
+  .today {
+    background-color: #ffcc00;
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .exercise-list {
+    margin-top: 20px;
+  }
+  
+  .exercise-card {
+    background-color: #1a1a1a;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .exercise-card ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .exercise-card li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .exercise-card.no-exercises {
+    background-color: #333;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+   */
+
+
+
+
+
+
+
+
+
+   .activity {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: linear-gradient(to bottom, #000, #284463); /* Gradient from black to blue */
+    color: #fff; /* White text color */
+}
+
+h2 {
+    margin-bottom: 120px;
+}
+
+.month-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.weekdays {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.weekday {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+}
+
+.dates {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.calendar-date {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.calendar-date:hover {
+    background-color: #f0f0f0;
+}
+
+.selected {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+}
+
+.highlighted {
+    background-color: #32CD32;
+    color: #fff;
+    border: 1px solid #32CD32;
+}
+
+.other-month {
+    color: #ccc;
+}
+
+.join-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.join-button:hover {
+    background-color: #0056b3;
+}
+
+.today {
+    background-color: #ffcc00; /* Yellow background */
+    color: #000; /* Black text color */
+    font-weight: bold; /* Bold text */
+}
+
+.exercise-card {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.exercise-card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.exercise-card li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.no-exercises {
+    text-align: center;
+}
