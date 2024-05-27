@@ -64,11 +64,14 @@ function ProfilePage() {
         chartRef.current.destroy();
       }
 
-      const formattedWeightData = weightData.map(data => ({
+      // Sort weightData by date
+      const sortedWeightData = [...weightData].sort((a, b) => new Date(a.date) - new Date(b.date));
+
+      const formattedWeightData = sortedWeightData.map(data => ({
         x: data.date,
         y: data.weight,
       }));
-      const goalWeightData = weightData.map(data => ({
+      const goalWeightData = sortedWeightData.map(data => ({
         x: data.date,
         y: userData.goal_weight,
       }));
@@ -76,15 +79,15 @@ function ProfilePage() {
       chartRef.current = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: weightData.map(data => data.date),
-          datasets: [{
-            label: 'Weight (lbs)',
-            data: weightData.map(data => data.weight),
-            borderColor: 'rgb(75, 192, 192)',
-            backgroundColor: 'rgba(75, 192, 192, 0.5)',
-            tension: 0.1,
-            fill: false,
-          },
+          datasets: [
+            {
+              label: 'Weight (lbs)',
+              data: formattedWeightData,
+              borderColor: 'rgb(75, 192, 192)',
+              backgroundColor: 'rgba(75, 192, 192, 0.5)',
+              tension: 0.1,
+              fill: false,
+            },
             {
               label: 'Weight Goal',
               data: goalWeightData,
@@ -97,14 +100,75 @@ function ProfilePage() {
         },
         options: {
           scales: {
+            x: {
+              type: 'time',
+              time: {
+                unit: 'day',
+              },
+              title: {
+                display: true,
+                text: 'Date',
+                color: '#fff', // Set the x-axis title color to white
+                font: {
+                  size: 20, // Increase the x-axis title font size
+                },
+              },
+              ticks: {
+                color: '#fff', // Set the x-axis tick color to white
+                font: {
+                  size: 16, // Increase the x-axis tick font size
+                },
+                autoSkip: true, // Enable autoSkip to avoid overlapping labels
+                maxTicksLimit: 10, // Limit the number of ticks to display
+              },
+              afterBuildTicks: function (scale) {
+                const end = new Date(scale.max).setDate(new Date(scale.max).getDate() + 2);
+                scale.max = new Date(end);
+              },
+            },
             y: {
               beginAtZero: false,
+              title: {
+                display: true,
+                text: 'Weight (lbs)',
+                color: '#fff', // Set the y-axis title color to white
+                font: {
+                  size: 20, // Increase the y-axis title font size
+                },
+              },
+              ticks: {
+                color: '#fff', // Set the y-axis tick color to white
+                font: {
+                  size: 16, // Increase the y-axis tick font size
+                },
+              },
             },
           },
           responsive: true,
           plugins: {
             legend: {
               display: true,
+              labels: {
+                color: '#fff', // Set the legend label color to white
+                font: {
+                  size: 16, // Increase the legend label font size
+                },
+              },
+            },
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  let label = context.dataset.label || '';
+                  if (label) {
+                    label += ': ';
+                  }
+                  label += context.raw.y;
+                  return label;
+                },
+                title: function (context) {
+                  return context[0].label.split('T')[0]; // Display only the date part
+                },
+              },
             },
           },
         },
@@ -159,7 +223,6 @@ function ProfilePage() {
 }
 
 export default ProfilePage;
-
 
 
 

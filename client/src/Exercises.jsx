@@ -19,6 +19,7 @@ function Exercise() {
         });
         if (response.ok) {
           const data = await response.json();
+          console.log(data); // Log the fetched data
           const transformedData = data.reduce((acc, exercise) => {
             const { muscle_group, exercise_name, image_url } = exercise;
             if (!acc[muscle_group]) {
@@ -30,6 +31,7 @@ function Exercise() {
             }
             return acc;
           }, {});
+          console.log(transformedData); // Log the transformed data
           setExercisesData(transformedData);
         } else {
           console.error('Failed to fetch exercises');
@@ -57,7 +59,7 @@ function Exercise() {
       ...prevData,
       [muscleGroup]: [...prevData[muscleGroup], { name: newExerciseName[muscleGroup] }]
     }));
-    setNewExerciseName(prevNames => ({ ...prevNames, [muscleGroup]: '' }));
+    setNewExerciseName(prevNames => ({ ...prevNames, [group]: '' }));
   };
 
   const handleDeleteExercise = (muscleGroup, exerciseName) => {
@@ -96,7 +98,7 @@ function Exercise() {
                 />
               ))}
             </div>
-            <div className="add-exercise">
+            <div>
               <input
                 type="text"
                 placeholder="Add New Exercise"

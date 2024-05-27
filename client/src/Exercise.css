@@ -4,6 +4,174 @@ body {
   background: linear-gradient(to bottom, #000, #0360cbdc);
 }
 
+  .navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Space out the logo and menu */
+    align-items: center; /* Vertically center the items */
+    padding: 10px 20px; /* Add padding for spacing */
+    background-color: #000000dc; /* Set a background color for the navbar */
+    box-sizing: border-box; /* Ensure padding is included in the width calculation */
+  }
+
+.navbar-logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-decoration: none; /* Remove underline from the link */
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none; /* Remove bullets from the list */
+  margin: 0;
+  padding: 0px;
+  flex-grow: 1; /* Allow the menu to grow and take available space */
+  justify-content: center; /* Center the menu items */
+}
+
+.navbar-menu li {
+  margin-right: 0px; /* Space out the menu items */
+}
+
+.navbar-menu li:last-child {
+  margin-right: 0; /* Remove the margin from the last item */
+}
+
+.navbar-menu a {
+  color: white;
+  text-decoration: none; /* Remove underline from the links */
+  font-size: 18px;
+}
+
+.navbar-menu a:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
+
+.active-link {
+  text-decoration: underline; /* Add underline to active link */
+}
+
+.join-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none; /* Remove underline from the link */
+  border-radius: 5px;
+  margin-left: 20px; /* Add margin to separate it from the menu items */
+}
+
+.join-button:hover {
+  background-color: #0056b3;
+}
+
+/* Other styles for the profile page */
+.profile {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white; /* Ensure text is visible on a dark background */
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.profile-title {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.profile-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+  font-size: 1.2em; /* Increase font size for readability */
+}
+
+.detail {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 1.2em; /* Increase font size for readability */
+}
+
+.label {
+  font-weight: bold;
+  font-size: 1.3em; /* Increase font size for better readability */
+}
+
+.value {
+  margin-left: 10px;
+}
+
+.weight-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0; /* Remove margin */
+}
+
+.weight-field {
+  width: 300px;
+  padding: 15px;
+  margin-bottom: 10px;
+  font-size: 1.2em; /* Increase font size for input field */
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2em; /* Increase font size for button */
+  margin-top: 0; /* Remove margin-top from the button */
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.weight-chart {
+  flex: 3; /* Increase the flex value to make the chart container wider */
+  width: 100%; /* Ensure the chart container covers the full width */
+  max-width: 1200px; /* Increase max-width to make the chart wider */
+  height: auto; /* Adjust the height to fit the content */
+  background-color: rgba(255, 255, 255, 0.8); /* Set a lighter background color for the chart container */
+  padding: 20px;
+  border-radius: 10px;
+  color: #000; /* Set text color to black for better readability */
+  margin-top: 0; /* Remove margin-top from the chart container */
+}
+
+.canvas-container {
+  width: 100%;
+  height: 100%;
+  max-height: 500px; /* Adjust this value to fit within your screen */
+  background-color: rgba(255, 255, 255, 0.8); /* Ensure the canvas background is light */
+  border-radius: 10px;
+}
+
+.chart-title {
+  color: #000; /* Set chart title color to black */
+  margin-bottom: 10px; /* Add a small margin below the title to reduce gap */
+}
+
+/* Styles for the exercise page */
 .exercise {
   max-width: 1200px;
   margin: 0 auto;
@@ -110,167 +278,5 @@ input:focus {
 }
 
 
-/* 
-
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 70px;
-  background: linear-gradient(to bottom, #000, #0360cbdc);
-  font-family: Arial, sans-serif;
-}
-
-#root, .exercise {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
 
 
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.exercise-title {
-  font-size: 32px;
-  font-weight: bold;
-  color: #fff;
-}
-
-.selected-button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.exercise-list {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  overflow-y: auto;
-}
-
-.muscle-group {
-  background-color: #1a1a1a;
-  padding: 20px;
-  border-radius: 10px;
-}
-
-.muscle-group-title {
-  font-size: 24px;
-  font-weight: bold;
-  color: #C0C0C0;
-}
-
-.exercise-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px;
-}
-
-.exercise-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #2a2a2a;
-  color: #fff;
-}
-
-.exercise-card.selected {
-  border-color: #007bff;
-}
-
-.exercise-card:hover {
-  background-color: #3a3a3a;
-}
-
-.exercise-img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin-bottom: 10px;
-}
-
-button {
-  margin-top: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-input {
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-input:focus {
-  outline: none;
-  border-color: #007bff;
-}
-
-
-
-
-
-.exercise-card {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  margin: 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #ffffff;
-  transition: background-color 0.3s;
-}
-
-.exercise-card.selected {
-  background-color: #3300ff;
-}
-
-.exercise-image {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.exercise-info {
-  flex: 1;
-  margin-left: 10px;
-}
-
-.exercise-info h3 {
-  margin: 0;
-  font-size: 1.6em;
-}
-
-.exercise-info button {
-  background: none;
-  border: none;
-  color: red;
-  cursor: pointer;
-  font-size: 0.8em;
-} */
