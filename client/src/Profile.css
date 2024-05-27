@@ -1,150 +1,221 @@
-/* Profile.css */
-
-/* Background gradient */
-.profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background: linear-gradient(to bottom, #000, #0360cbdc); /* Gradient from black to blue */
-    color: #fff; /* Text color */
-  }
-  
-  /* Profile info */
-  .profile-info {
-    margin-bottom: 20px;
-  }
-  
-  .profile-title {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .profile-details {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .detail {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .label {
-    font-weight: bold;
-    margin-right: 5px;
-  }
-  
-  .value {
-    color: #fff; /* Text color */
-  }
-  
-  .weight-input {
-    margin-bottom: 20px;
-  }
-  
-  .input-title {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .weight-field {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .submit-button {
-    background-color: #4caf50; /* Green color for button */
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .submit-button:hover {
-    background-color: #45a049; /* Darker green color on hover */
-  }
-  
-  .weight-chart {
-    width: 100%;
-  }
-  
-  .chart-title {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  /* Styling for lines on the chart */
-  .ct-series-a .ct-line {
-    stroke: #4caf50; /* Green color for the line */
-    stroke-width: 2px; /* Adjust line thickness */
-  }
-  
-  .ct-grid {
-    stroke: #fff; /* White color for grid lines */
-  }
-  
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    padding: 10px 20px;
-    width: 100%; /* Ensures the navbar stretches across the entire width */
-    box-sizing: border-box; /* Ensures padding and border are included in the width */
-  }
-  
-  .navbar-menu {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .navbar-menu li {
-    display: inline;
-    margin-right: 20px;
-  }
-  
-  .navbar-menu li:last-child {
-    margin-right: 0; /* Remove margin from the last item to prevent extra space */
-  }
-  
-  .navbar-menu li a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  .navbar-logo {
-    color: #fff;
-    font-size: 1.5rem;
-    text-decoration: none;
-  }
-  
-  .join-button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  
-  .join-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .canvas-container canvas {
-    width: 100%;
-    height: auto;
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #000, #0360cbdc);
 }
 
-/* Additional visibility checks to ensure elements are properly layered and visible */
-.detail, .profile-info, .weight-chart {
-    z-index: 1; /* Ensures these elements do not get hidden behind others */
-    position: relative;
+.profile {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white; /* Ensure text is visible on a dark background */
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.profile-title {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.profile-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+  font-size: 1.2em; /* Increase font size for readability */
+}
+
+.detail {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 1.2em; /* Increase font size for readability */
+}
+
+.label {
+  font-weight: bold;
+  font-size: 1.3em; /* Increase font size for better readability */
+}
+
+.value {
+  margin-left: 10px;
+}
+
+.weight-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0; /* Remove margin */
+}
+
+.weight-field {
+  width: 300px;
+  padding: 15px;
+  margin-bottom: 10px;
+  font-size: 1.2em; /* Increase font size for input field */
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2em; /* Increase font size for button */
+  margin-top: 0; /* Remove margin-top from the button */
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.weight-chart {
+  flex: 2;
+  width: 100%; /* Ensure the chart container covers the full width */
+  max-width: 800px;
+  height: auto; /* Adjust the height to fit the content */
+  background-color: rgba(255, 255, 255, 0.8); /* Set a lighter background color for the chart container */
+  padding: 20px;
+  border-radius: 10px;
+  color: #000; /* Set text color to black for better readability */
+  margin-top: 0; /* Remove margin-top from the chart container */
+}
+
+.canvas-container {
+  width: 100%;
+  height: 100%;
+  max-height: 500px; /* Adjust this value to fit within your screen */
+  background-color: rgba(255, 255, 255, 0.8); /* Ensure the canvas background is light */
+  border-radius: 10px;
+}
+
+.chart-title {
+  color: #000; /* Set chart title color to black */
+  margin-bottom: 10px; /* Add a small margin below the title to reduce gap */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #000, #0360cbdc);
+}
+
+.profile {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white; /* Ensure text is visible on a dark background */
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.profile-title {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.profile-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+  font-size: 1.2em; /* Increase font size for readability */
+}
+
+.detail {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 1.2em; /* Increase font size for readability */
+}
+
+.label {
+  font-weight: bold;
+  font-size: 1.3em; /* Increase font size for better readability */
+}
+
+.value {
+  margin-left: 10px;
+}
+
+.weight-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0; /* Remove margin */
+}
+
+.weight-field {
+  width: 300px;
+  padding: 15px;
+  margin-bottom: 10px;
+  font-size: 1.2em; /* Increase font size for input field */
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2em; /* Increase font size for button */
+  margin-top: 0; /* Remove margin-top from the button */
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.weight-chart {
+  flex: 3; /* Increase the flex value to make the chart container wider */
+  width: 100%; /* Ensure the chart container covers the full width */
+  max-width: 1200px; /* Increase max-width to make the chart wider */
+  height: auto; /* Adjust the height to fit the content */
+  background-color: rgba(255, 255, 255, 0.8); /* Set a lighter background color for the chart container */
+  padding: 20px;
+  border-radius: 10px;
+  color: #000; /* Set text color to black for better readability */
+  margin-top: 0; /* Remove margin-top from the chart container */
+}
+
+.canvas-container {
+  width: 100%;
+  height: 100%;
+  max-height: 500px; /* Adjust this value to fit within your screen */
+  background-color: rgba(255, 255, 255, 0.8); /* Ensure the canvas background is light */
+  border-radius: 10px;
+}
+
+.chart-title {
+  color: #000; /* Set chart title color to black */
+  margin-bottom: 10px; /* Add a small margin below the title to reduce gap */
 }

@@ -7,8 +7,126 @@ body {
 .exercise {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 10px;
 }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.exercise-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.selected-button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.exercise-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.muscle-group {
+  background-color: #1a1a1a;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.muscle-group-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #C0C0C0;
+  margin-bottom: 10px;
+}
+
+.exercise-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 5px;
+}
+
+.exercise-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #2a2a2a;
+  color: #fff;
+}
+
+.exercise-card.selected {
+  border-color: #007bff;
+}
+
+.exercise-card:hover {
+  background-color: #3a3a3a;
+}
+
+.exercise-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-bottom: 5px;
+}
+
+button {
+  margin-top: 5px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+input {
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+
+/* 
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 70px;
+  background: linear-gradient(to bottom, #000, #0360cbdc);
+  font-family: Arial, sans-serif;
+}
+
+#root, .exercise {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
 
 .header {
   display: flex;
@@ -33,9 +151,11 @@ body {
 }
 
 .exercise-list {
-  display: grid;
-  grid-template-columns: 1fr;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
+  overflow-y: auto;
 }
 
 .muscle-group {
@@ -108,3 +228,49 @@ input:focus {
   outline: none;
   border-color: #007bff;
 }
+
+
+
+
+
+.exercise-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  transition: background-color 0.3s;
+}
+
+.exercise-card.selected {
+  background-color: #3300ff;
+}
+
+.exercise-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.exercise-info {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.exercise-info h3 {
+  margin: 0;
+  font-size: 1.6em;
+}
+
+.exercise-info button {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 0.8em;
+} */

@@ -20,19 +20,24 @@ function Login() {
           email,
           password
         }),
-        credentials: 'include' // Ensure credentials are included
+        credentials: 'include'
       });
 
       if (!response.ok) {
-        throw new Error('Login failed');
+        if (response.status === 401) {
+          setError('Invalid email or password');
+        } else {
+          setError('Login failed, please try again');
+        }
+        return;
       }
 
       const data = await response.json();
       console.log('Login successful:', data);
-      navigate('/exercises'); // Redirect to the exercises page
+      navigate('/'); // Redirect to the home page
     } catch (error) {
       console.error('Login failed:', error.message);
-      setError('Invalid email or password');
+      setError('An error occurred, please try again');
     }
   };
 
@@ -43,7 +48,7 @@ function Login() {
         <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
-            type="text"
+            type="email"
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -68,6 +73,4 @@ function Login() {
 }
 
 export default Login;
-
-
 

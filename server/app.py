@@ -1,9 +1,11 @@
 
+
 # import os
 # from flask import Flask, request, session, jsonify
 # from flask_cors import CORS
 # from flask_migrate import Migrate
 # from models import db, User, WeightLog, Exercise, ExerciseLog
+# from datetime import datetime
 
 # app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
@@ -53,7 +55,6 @@
 #     return jsonify({"message": "Logout successful"}), 200
 
 # def get_current_user():
-#     # user_id = session.get('user_id')
 #     user_id = 1
 #     app.logger.info(f'Session user_id: {user_id}')
 #     if user_id:
@@ -113,23 +114,35 @@
 #     db.session.commit()
 #     return jsonify({"message": "Exercise deleted"}), 200
 
-# @app.route('/activity', methods=['GET'])
-# def activity():
-#     current_user = get_current_user()
-#     if not current_user:
-#         return jsonify({"message": "Unauthorized"}), 401
+# @app.route('/api/activity', methods=['GET'])
+# def get_activity_logs():
+#     month = request.args.get('month')
+#     year = request.args.get('year')
+#     user_id = 1
 
-#     date = request.args.get('date')
-#     activities = ExerciseLog.query.filter_by(user_id=current_user.id, date=date).all()
-#     weight = WeightLog.query.filter_by(user_id=current_user.id, date=date).first()
-#     return jsonify({
-#         "activities": [activity.serialize() for activity in activities],
-#         "weight": weight.serialize() if weight else None
-#     }), 200
+#     if not month or not year or not user_id:
+#         return jsonify({"error": "Month, year, and user_id are required"}), 400
+
+#     start_date = datetime(int(year), int(month), 1)
+#     end_date = datetime(int(year), int(month) + 1, 1) if int(month) < 12 else datetime(int(year) + 1, 1, 1)
+
+#     exercise_logs = ExerciseLog.query.filter(
+#         ExerciseLog.user_id == user_id,
+#         ExerciseLog.date >= start_date,
+#         ExerciseLog.date < end_date
+#     ).all()
+
+#     logs = [{
+#         "date": log.date.strftime('%Y-%m-%d'),
+#         "exercise_name": log.exercise_name,
+#         "muscle_group": log.muscle_group,
+#         "img": log.image_url
+#     } for log in exercise_logs]
+
+#     return jsonify(logs), 200
 
 # if __name__ == '__main__':
 #     app.run(debug=True, port=5555)
-
 
 
 
@@ -278,4 +291,3 @@ def get_activity_logs():
 
 if __name__ == '__main__':
     app.run(debug=True, port=5555)
-

@@ -1,27 +1,6 @@
-// import React from 'react';
-// import Profile from './Profile';
-
-// function ProfilePage() {
-//   // Sample weight data
-//   const weightData = [
-//     { date: '2024-04-01', weight: 180 },
-//     { date: '2024-04-05', weight: 178 },
-//     { date: '2024-04-10', weight: 176 },
-//     // Add more weight data as needed
-//   ];
-
-//   return (
-//     <div>
-//       <Profile weightData={weightData} />
-//     </div>
-//   );
-// }
-
-// export default ProfilePage;
-
-
 import React, { useRef, useEffect, useState } from 'react';
 import Chart from 'chart.js/auto';
+import 'chartjs-adapter-luxon'; // Import the Luxon adapter
 import Navbar from './Navbar';
 import './Profile.css';
 
@@ -70,7 +49,7 @@ function ProfilePage() {
           date: new Date().toISOString().split('T')[0],
           weight: updatedWeight,
         };
-        setWeightData([...weightData, newWeightLog]);
+        setWeightData((prevWeightData) => [...prevWeightData, newWeightLog]);
         setNewWeight('');
       } catch (error) {
         console.error('Error logging new weight:', error);
@@ -85,6 +64,15 @@ function ProfilePage() {
         chartRef.current.destroy();
       }
 
+      const formattedWeightData = weightData.map(data => ({
+        x: data.date,
+        y: data.weight,
+      }));
+      const goalWeightData = weightData.map(data => ({
+        x: data.date,
+        y: userData.goal_weight,
+      }));
+
       chartRef.current = new Chart(ctx, {
         type: 'line',
         data: {
@@ -96,7 +84,16 @@ function ProfilePage() {
             backgroundColor: 'rgba(75, 192, 192, 0.5)',
             tension: 0.1,
             fill: false,
-          }],
+          },
+            {
+              label: 'Weight Goal',
+              data: goalWeightData,
+              borderColor: 'rgba(0, 0, 139, 1)', // Blue color
+              backgroundColor: 'rgba(0, 0, 139, 0.2)', // Blue color with transparency
+              borderDash: [5, 5],
+              fill: false,
+            },
+          ],
         },
         options: {
           scales: {
@@ -119,7 +116,7 @@ function ProfilePage() {
         chartRef.current.destroy();
       }
     };
-  }, [weightData]);
+  }, [weightData, userData]);
 
   if (!userData) {
     return <div>Loading...</div>;
@@ -128,9 +125,6 @@ function ProfilePage() {
   return (
     <div className="profile">
       <Navbar />
-      <header className="header">
-        <h1 className="profile-title">Profile Details</h1>
-      </header>
       <div className="profile-info">
         <div className="detail">
           <span className="label">Height:</span>
@@ -146,7 +140,6 @@ function ProfilePage() {
         </div>
       </div>
       <div className="weight-input">
-        <h2 className="input-title">Today's Weight</h2>
         <input
           type="number"
           className="weight-field"
@@ -166,3 +159,7 @@ function ProfilePage() {
 }
 
 export default ProfilePage;
+
+
+
+
