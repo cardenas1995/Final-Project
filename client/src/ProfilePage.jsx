@@ -50,6 +50,7 @@ function ProfilePage() {
           weight: updatedWeight,
         };
         setWeightData((prevWeightData) => [...prevWeightData, newWeightLog]);
+        setUserData((prevUserData) => ({ ...prevUserData, weight: updatedWeight })); // Update current weight in userData
         setNewWeight('');
       } catch (error) {
         console.error('Error logging new weight:', error);
@@ -223,6 +224,3 @@ function ProfilePage() {
 }
 
 export default ProfilePage;
-
-
-
