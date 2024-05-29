@@ -59,7 +59,7 @@ function Exercise() {
       ...prevData,
       [muscleGroup]: [...prevData[muscleGroup], { name: newExerciseName[muscleGroup] }]
     }));
-    setNewExerciseName(prevNames => ({ ...prevNames, [group]: '' }));
+    setNewExerciseName(prevNames => ({ ...prevNames, [muscleGroup]: '' }));
   };
 
   const handleDeleteExercise = (muscleGroup, exerciseName) => {

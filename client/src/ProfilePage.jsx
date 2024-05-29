@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect, useState } from 'react';
 import Chart from 'chart.js/auto';
 import 'chartjs-adapter-luxon'; // Import the Luxon adapter
@@ -22,7 +23,22 @@ function ProfilePage() {
       })
       .then(data => {
         setUserData(data.user);
-        setWeightData(data.user.weight_logs);
+        // Filter out today's weight data
+        const filteredWeightData = data.user.weight_logs.filter(log => log.date !== new Date().toISOString().split('T')[0]);
+        setWeightData(filteredWeightData);
+
+        // Find the last weight log before May 26th
+        const lastWeightBeforeMay26 = data.user.weight_logs
+          .filter(log => new Date(log.date) <= new Date('2024-05-26'))
+          .reduce((prevLog, currentLog) => {
+            return new Date(currentLog.date) > new Date(prevLog.date) ? currentLog : prevLog;
+          });
+
+        // Set the initial state of userData.weight to the weight logged on May 26th
+        setUserData(prevUserData => ({
+          ...prevUserData,
+          weight: lastWeightBeforeMay26.weight
+        }));
       })
       .catch(error => {
         console.error('Error fetching profile data:', error);
@@ -224,3 +240,6 @@ function ProfilePage() {
 }
 
 export default ProfilePage;
+
+
+
